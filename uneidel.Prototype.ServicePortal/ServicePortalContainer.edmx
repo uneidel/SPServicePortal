@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BA.POC.ServicePortalModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="BAPOCServicePortalModelStoreContainer">
+    <EntitySet Name="Loggings" EntityType="BA.POC.ServicePortalModel.Store.Loggings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrderEntities" EntityType="BA.POC.ServicePortalModel.Store.OrderEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SimpleAccessModels" EntityType="BA.POC.ServicePortalModel.Store.SimpleAccessModels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QuotaEntities" EntityType="BA.POC.ServicePortalModel.Store.QuotaEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SCEntities" EntityType="BA.POC.ServicePortalModel.Store.SCEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SampleDatas" EntityType="BA.POC.ServicePortalModel.Store.SampleDatas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BehoerdenEntities" EntityType="BA.POC.ServicePortalModel.Store.BehoerdenEntities" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Loggings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+    <Property Name="Action" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="User" Type="nvarchar" Nullable="false" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="OrderEntities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="User" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Approval" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="SimpleAccessModels">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Role" Type="nvarchar" Nullable="false" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="QuotaEntities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Quota" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Order" Type="uniqueidentifier" Nullable="true" />
+  </EntityType>
+  <EntityType Name="SCEntities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Template" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Quota" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Order" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BehoerdenId" Type="int" Nullable="false" />
+    <Property Name="SCOwner" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SampleDatas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DateTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Amount" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BehoerdenEntities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BehoerdenName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BA.POC.ServicePortalModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities">
+          <EntitySet Name="Loggings" EntityType="BA.POC.ServicePortalModel.Logging" />
+          <EntitySet Name="OrderEntities" EntityType="BA.POC.ServicePortalModel.OrderEntity" />
+          <EntitySet Name="SimpleAccessModels" EntityType="BA.POC.ServicePortalModel.SimpleAccessModel" />
+          <EntitySet Name="QuotaEntities" EntityType="BA.POC.ServicePortalModel.QuotaEntity" />
+          <EntitySet Name="SCEntities" EntityType="BA.POC.ServicePortalModel.SCEntity" />
+          <EntitySet Name="SampleDatas" EntityType="BA.POC.ServicePortalModel.SampleData" />
+          <EntitySet Name="BehoerdenEntities" EntityType="BA.POC.ServicePortalModel.BehoerdenEntity" />
+        </EntityContainer>
+        <EntityType Name="Logging">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Action" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="User" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="OrderEntity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="User" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Approval" Nullable="false" />
+          <Property Name="Comment" Type="String" Nullable="true" />
+        </EntityType>
+        <EntityType Name="SimpleAccessModel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="QuotaEntity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" a:StoreGeneratedPattern="None" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Quota" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Order" Type="Guid" Nullable="true" />
+        </EntityType>
+        <EntityType Name="SCEntity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Template" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Quota" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="Guid" Nullable="false" />
+          <Property Name="BehoerdenId" Type="Int32" Nullable="false" />
+          <Property Name="SCOwner" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SampleData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" a:StoreGeneratedPattern="None" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="DateTime" Nullable="false" />
+          <Property Type="String" Name="Amount" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BehoerdenEntity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="BehoerdenName" Type="String" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BAPOCServicePortalModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Loggings">
+      <EntityTypeMapping TypeName="IsTypeOf(BA.POC.ServicePortalModel.Logging)">
+        <MappingFragment StoreEntitySet="Loggings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="User" ColumnName="User" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(BA.POC.ServicePortalModel.OrderEntity)">
+        <MappingFragment StoreEntitySet="OrderEntities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="Approval" ColumnName="Approval" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SimpleAccessModels">
+      <EntityTypeMapping TypeName="IsTypeOf(BA.POC.ServicePortalModel.SimpleAccessModel)">
+        <MappingFragment StoreEntitySet="SimpleAccessModels">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuotaEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(BA.POC.ServicePortalModel.QuotaEntity)">
+        <MappingFragment StoreEntitySet="QuotaEntities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quota" ColumnName="Quota" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SCEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(BA.POC.ServicePortalModel.SCEntity)">
+        <MappingFragment StoreEntitySet="SCEntities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Template" ColumnName="Template" />
+          <ScalarProperty Name="Quota" ColumnName="Quota" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="BehoerdenId" ColumnName="BehoerdenId" />
+          <ScalarProperty Name="SCOwner" ColumnName="SCOwner" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SampleDatas">
+      <EntityTypeMapping TypeName="IsTypeOf(BA.POC.ServicePortalModel.SampleData)">
+        <MappingFragment StoreEntitySet="SampleDatas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BehoerdenEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(BA.POC.ServicePortalModel.BehoerdenEntity)">
+        <MappingFragment StoreEntitySet="BehoerdenEntities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BehoerdenName" ColumnName="BehoerdenName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ServicePortalContainer" ZoomLevel="106">
+        <EntityTypeShape EntityType="BA.POC.ServicePortalModel.Logging" Width="1.5" PointX="0.75" PointY="0.75" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="BA.POC.ServicePortalModel.OrderEntity" Width="1.5" PointX="2.75" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="BA.POC.ServicePortalModel.SimpleAccessModel" Width="1.5" PointX="7.625" PointY="0.75" Height="1.7879850260416657" IsExpanded="true" />
+        <EntityTypeShape EntityType="BA.POC.ServicePortalModel.QuotaEntity" Width="1.5" PointX="4.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BA.POC.ServicePortalModel.SCEntity" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="BA.POC.ServicePortalModel.SampleData" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BA.POC.ServicePortalModel.BehoerdenEntity" Width="1.5" PointX="1.125" PointY="3.5" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
